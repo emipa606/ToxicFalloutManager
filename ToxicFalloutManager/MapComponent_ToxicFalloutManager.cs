@@ -61,7 +61,7 @@ namespace ToxicFalloutManager
             {
                 if (a.ToString() == TOXIC_NAME_H)
                 {
-                    if (a.AssignableAsAllowed(AllowedAreaMode.Humanlike))
+                    if (a.AssignableAsAllowed())
                     {
                         this.humanToxic = a;
                     }
@@ -72,7 +72,7 @@ namespace ToxicFalloutManager
                 }
                 else if (a.ToString() == TOXIC_NAME_A)
                 {
-                    if (a.AssignableAsAllowed(AllowedAreaMode.Animal))
+                    if (a.AssignableAsAllowed())
                     {
                         this.animalToxic = a;
                     }
@@ -92,14 +92,14 @@ namespace ToxicFalloutManager
             if (this.humanToxic == null)
             {
                 Area_Allowed newHumanToxic;
-                map.areaManager.TryMakeNewAllowed(AllowedAreaMode.Humanlike, out newHumanToxic);
+                map.areaManager.TryMakeNewAllowed(out newHumanToxic);
                 newHumanToxic.SetLabel(TOXIC_NAME_H);
                 this.humanToxic = newHumanToxic;
             }
             if (this.animalToxic == null)
             {
                 Area_Allowed newAnimalToxic;
-                map.areaManager.TryMakeNewAllowed(AllowedAreaMode.Animal, out newAnimalToxic);
+                map.areaManager.TryMakeNewAllowed(out newAnimalToxic);
                 newAnimalToxic.SetLabel(TOXIC_NAME_A);
                 this.animalToxic = newAnimalToxic;
             }
@@ -107,7 +107,14 @@ namespace ToxicFalloutManager
 
         public bool isToxicFallout()
         {
-            return map.mapConditionManager.ConditionIsActive(MapConditionDefOf.ToxicFallout);
+            foreach (GameCondition gc in map.gameConditionManager.ActiveConditions)
+            {
+                if (gc.def == GameConditionDefOf.ToxicFallout)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool isPawnAnimal(Pawn p)
