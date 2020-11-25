@@ -14,7 +14,7 @@ namespace ToxicFalloutManager
         public const string TOXIC_NAME_A = "ToxicA";
 
         public List<Area> exemptedAreas;
-        public const string PSYCHE_NAME = "Psyche";
+        public readonly string[] EXEMPTED_NAMES = new string[] { "Psyche", "Joy", "Medi" };
 
         public bool enabled;
 
@@ -81,7 +81,7 @@ namespace ToxicFalloutManager
                         a.SetLabel(TOXIC_NAME_A + "2");
                     }
                 }
-                else if(a.Label == PSYCHE_NAME)
+                else if(EXEMPTED_NAMES.Contains(a.Label))
                 {
                     if (!exemptedAreas.Contains(a))
                     {
