@@ -4,6 +4,8 @@ This is a mod for the game RimWorld by Ludeon Studios.
 
 It automatically manages Allowed Area in response to Toxic Fallout.
 
+We're on Steam: https://steamcommunity.com/sharedfiles/filedetails/?id=2324530997
+
 # Table of Contents
 
 * [Introduction and Explanation](#introduction-and-explanation)
